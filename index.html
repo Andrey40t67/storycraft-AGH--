@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Storycraft-AGH - лучший сайт для создания интерактивных и захватывающих историй.">
+    <title>Storycraft-AGH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px;
+            background-color: #1f1f1f;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .content {
+            margin-top: 100px;
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+            background-color: #1f1f1f;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #FFD700;
+        }
+
+        input[type="password"], input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            outline: none;
+        }
+
+        input[type="password"]::placeholder, input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        button {
+            padding: 15px 20px;
+            background-color: #FFD700;
+            border: none;
+            border-radius: 10px;
+            color: #121212;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #FFC700;
+        }
+
+        #error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .emoji-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 50px;
+            opacity: 0.8;
+            transition: transform 0.1s ease-in-out;
+            pointer-events: none;
+        }
+
+        footer {
+            width: 100%;
+            padding: 20px;
+            background-color: #1f1f1f;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            z-index: 10;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Storycraft-AGH</h1>
+    </header>
+
+    <div class="emoji-bg">
+        <span class="emoji" style="left: 10%; top: 20%;">😈</span>
+        <span class="emoji" style="left: 20%; top: 40%;">👻</span>
+        <span class="emoji" style="left: 70%; top: 10%;">💀</span>
+        <span class="emoji" style="left: 60%; top: 50%;">🎃</span>
+        <span class="emoji" style="left: 30%; top: 80%;">👹</span>
+    </div>
+
+    <div class="content">
+        <h2>Введите секретный код</h2>
+        <input type="password" id="secret-code-input" placeholder="Введите код">
+        <button onclick="checkCode()">Войти</button>
+        <p id="error-message">Неверный код. Попробуйте снова.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Storycraft-AGH. Все права защищены. Сайт создан ютубером AGH.</p>
+    </footer>
+
+    <script>
+        const secretCode = "2914";
+
+        function checkCode() {
+            const inputCode = document.getElementById("secret-code-input").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (inputCode === secretCode) {
+                window.location.href = "story-generator.html"; // Переход на страницу генерации истории
+            } else {
+                errorMessage.style.opacity = 1;
+                errorMessage.style.animation = "shake 0.5s";
+            }
+        }
+
+        document.addEventListener('mousemove', function(e) {
+            const emojis = document.querySelectorAll('.emoji');
+            emojis.forEach((emoji, index) => {
+                const speed = (index + 1) * 0.05;
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+                emoji.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
